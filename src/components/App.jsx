@@ -20,14 +20,6 @@ class App extends Component {
   };
 
   addContact = newContact => {
-    // const { contacts } = this.state;
-    // contacts.forEach(({ name }) => {
-    //   if (name === newContact.name) {
-    //     alert(`${name} is already in contacts`);
-    //     return;
-    //   }
-    // });
-    // console.log(contacts);
     this.setState(prevState => {
       let isContains = false;
       let updateContacts = [];
@@ -48,6 +40,13 @@ class App extends Component {
     });
   };
 
+  deleteContact = e => {
+    const id = e.currentTarget.dataset.id;
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   render() {
     const { contacts, filter } = this.state;
     const visibleContacts = contacts.filter(({ name }) =>
@@ -60,7 +59,10 @@ class App extends Component {
         <ContactForm addContact={this.addContact} />
         <ContactsListTitle>Contacts</ContactsListTitle>
         <Filter searchByName={this.searchByName} />
-        <ContactsList phoneList={visibleContacts} />
+        <ContactsList
+          phoneList={visibleContacts}
+          deleteContact={this.deleteContact}
+        />
       </>
     );
   }
