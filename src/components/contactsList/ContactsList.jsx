@@ -1,4 +1,5 @@
 import { PhoneList, PhoneContact, DeleteContact } from './ContactsList.styled';
+import propTypes from 'prop-types';
 
 export default function ContactsList({ phoneList, deleteContact }) {
   return (
@@ -16,3 +17,7 @@ export default function ContactsList({ phoneList, deleteContact }) {
     </>
   );
 }
+ContactsList.propTypes = {
+  phoneList: propTypes.arrayOf(propTypes.object).isRequired,
+  deleteContact: propTypes.func.isRequired,
+};
