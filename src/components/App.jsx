@@ -41,10 +41,14 @@ class App extends Component {
   };
 
   deleteContact = e => {
-    const id = e.currentTarget.dataset.id;
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
+    const elem = e.currentTarget;
+    elem.style.backgroundColor = 'blue';
+    const id = elem.dataset.id;
+    setTimeout(() => {
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(contact => contact.id !== id),
+      }));
+    }, 500);
   };
 
   render() {
